@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HASS — Joyería </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://png.pngtree.com/thumb_back/fh260/background/20231108/pngtree-creatively-crafting-personalized-christmas-gifts-handmade-jewelry-for-friends-on-textured-image_13794058.png" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #cc0cc9;
+      color: #09b14f;
+      overflow-x: hidden;
+      scroll-behavior: smooth; 
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    a { text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    header.scrolled {
+      background: rgba(113, 234, 194, 0.92);
+      backdrop-filter: blur(20px);
+      padding: 14px 40px;
+      box-shadow: 0 1px 20px rgba(119, 106, 24, 0.06);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #c8490f;
+      letter-spacing: 3px;
+    }
+
+    .logo span { color: #acff12; }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.5);
+      transition: color 0.3s;
+      font-weight: 400;
+    }
+
+    .nav-links a:hover { color: #ff0808; }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+
+    .menu-toggle span {
+      width: 24px;
+      height: 1.5px;
+      background: #ff4848;
+      transition: all 0.3s;
+    }
+
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: #ffffff;
+      padding-top: 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1518623001395-125242310d0c?q=80&w=2089&auto=format&fit=crop') center 35% / cover no-repeat;
+      opacity: 0.2;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(252,249,247,0.1) 0%, #fcf9f7 75%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #1c10ff;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 1;
+      font-weight: 700;
+      color: #cf0eff;
+    }
+
+    .hero-title .line:last-child {
+      color: #e51dff;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      font-weight: 200;
+      color: rgba(4, 0, 255, 0.45);
+      max-width: 420px;
+      margin: 22px auto 34px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 38px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      font-weight: 500;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #c4ff4d;
+      color: #000000;
+    }
+
+    .btn-primary:hover {
+      background: #ff3f0f;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(252, 91, 255, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #ff0000;
+      border: 1px solid rgba(255, 0, 0, 0.12);
+    }
+
+    .btn-outline:hover {
+      border-color: #15ff00;
+      color: #ff5a01;
+      transform: translateY(-2px);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+
+    .scroll-down .line {
+      width: 1px;
+      height: 30px;
+      background: linear-gradient(to bottom, #ff00d9, transparent);
+    }
+
+    .scroll-down span {
+      font-size: 0.5rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(94, 1, 255, 0.5);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    section { padding: 110px 0; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #ff00f2;
+      margin-bottom: 10px;
+    }
+
+    .section-tag::before,
+    .section-tag::after {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: rgba(0, 255, 179, 0.25);
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      margin-bottom: 14px;
+      color: #ff3c00;
+      line-height: 1.1;
+    }
+
+    .section-desc {
+      color: rgba(0, 17, 255, 0.4);
+      font-weight: 200;
+      line-height: 1.9;
+      max-width: 540px;
+      font-size: 0.92rem;
+    }
+
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    #productos { background: #eeee74; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 56px;
+    }
+
+    .product-card {
+      background: #a2d1ff;
+      border: 1px solid rgba(193, 79, 255, 0.05);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      border-color: rgba(131, 8, 255, 0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(204, 67, 3, 0.06);
+    }
+
+    .product-card-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-card-img {
+      transform: scale(1.04);
+    }
+
+    .product-card-body {
+      padding: 26px 26px 28px;
+    }
+
+    .product-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 6px;
+    }
+
+    .product-card p {
+      color: rgba(0, 0, 0, 0.38);
+      font-size: 0.8rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .product-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(61,44,36,0.05);
+    }
+
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #ff00a2;
+    }
+
+    .product-link {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(0, 191, 255, 0.2);
+      transition: color 0.3s;
+    }
+
+    .product-link:hover { color: #ff5d35; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(61,44,36,0.6);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: #ff8080;
+      max-width: 600px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      animation: modalIn 0.4s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-img { width: 100%; height: 100%; object-fit: cover; }
+
+    .modal-body {
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modal-body h2 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-body .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #ff3a7f;
+      margin-bottom: 14px;
+    }
+
+    .modal-body p {
+      color: rgba(76, 0, 255, 0.45);
+      font-size: 0.85rem;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .modal-close {
+      background: #3d2c24;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      align-self: flex-start;
+    }
+
+    .modal-close:hover { background: #a8f7ef; }
+
+    #galeria { background: #e8fff0; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 50px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: opacity 0.4s;
+    }
+
+    .gallery-grid img:hover { opacity: 0.8; }
+    .gallery-grid .tall { grid-row: span 2; height: 100%; }
+    .gallery-grid .wide { grid-column: span 2; }
+
+    .featured { background: #fcf9f7; }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .featured-img-wrap { position: relative; }
+
+    .featured-img {
+      width: 100%;
+      aspect-ratio: 1 / 1.2;
+      object-fit: cover;
+    }
+
+    .featured-badge {
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      background: #d4a093;
+      color: #7a14ff;
+      padding: 10px 22px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+
+    .featured-list {
+      list-style: none;
+      margin: 22px 0 30px;
+    }
+
+    .featured-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(61,44,36,0.05);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.82rem;
+      color: rgba(255, 81, 0, 0.45);
+      font-weight: 300;
+    }
+
+    .featured-list li::before {
+      content: '◇';
+      color: #d4a093;
+      font-size: 0.65rem;
+    }
+
+    #testimonios { background: #89f4f1; }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .testimonial-card {
+      background: #ff9752;
+      border: 1px solid rgba(61,44,36,0.04);
+      padding: 34px 28px;
+      transition: border-color 0.3s;
+    }
+
+    .testimonial-card:hover { border-color: rgba(126, 251, 107, 0.12); }
+
+    .testimonial-stars {
+      color: #8398ec;
+      margin-bottom: 14px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-card blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(0, 0, 0, 0.65);
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      font-size: 0.78rem;
+      color: #e100ff;
+      font-weight: 500;
+    }
+
+    .testimonial-author span {
+      color: rgba(0, 115, 255, 0.2);
+      font-weight: 300;
+    }
+
+    .newsletter {
+      background: #ffeefb;
+      text-align: center;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 30px auto 0;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 1px solid rgba(61,44,36,0.1);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      background: #fff;
+      color: #a13402;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .newsletter-form input:focus {
+      border-color: #d4a093;
+    }
+
+    .newsletter-form input::placeholder {
+      color: rgba(61,44,36,0.2);
+      font-weight: 300;
+    }
+
+    .newsletter-form button {
+      padding: 14px 30px;
+      background: #3d2c24;
+      color: #ff7d7d;
+      border: none;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .newsletter-form button:hover { background: #d4a093; }
+
+    .newsletter-msg {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #ffb09d;
+      min-height: 24px;
+    }
+
+    #contacto { background: #d5beff; text-align: center; }
+
+    .contact-content { max-width: 560px; margin: 0 auto; }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 44px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item { text-align: center; }
+
+    .contact-item-label {
+      font-size: 0.55rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(61,44,36,0.2);
+      margin-bottom: 6px;
+    }
+
+    .contact-item-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: #3d2c24;
+    }
+
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid rgba(61,44,36,0.05);
+      text-align: center;
+      background: #def204;
+    }
+
+    footer p {
+      font-size: 0.6rem;
+      color: rgba(0, 0, 0, 0.18);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #000000;
+      color: #000000;
+      padding: 14px 32px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      opacity: 0;
+      transition: all 0.5s ease;
+      z-index: 300;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 260px;
+        height: 100vh;
+        background: #ff0202;
+        flex-direction: column;
+        gap: 0;
+        padding: 80px 36px 36px;
+        transition: right 0.4s ease;
+        box-shadow: -10px 0 40px rgba(255, 0, 200, 0.05);
+      }
+
+      .nav-links.open { right: 0; }
+
+      .nav-links a {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(61,44,36,0.04);
+        font-size: 0.75rem;
+      }
+
+      .menu-toggle { display: flex; }
+
+      .featured-grid { grid-template-columns: 1fr; gap: 36px; }
+      .featured-badge { bottom: auto; top: 14px; right: 14px; }
+
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid .wide { grid-column: span 2; }
+      .gallery-grid .tall { grid-row: auto; height: 260px; }
+
+      .modal { grid-template-columns: 1fr; }
+      .modal-img { height: 240px; }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 70px 0; }
+      header { padding: 16px 20px; }
+      header.scrolled { padding: 12px 20px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: clamp(2.4rem, 12vw, 4rem); }
+      .contact-details { gap: 24px; flex-direction: column; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .wide { grid-column: span 1; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <a href="#" class="logo">HASS<span>.</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#productos" class="nav-link">Joyas</a></li>
+        <li><a href="#galeria" class="nav-link">Galería</a></li>
+        <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-sub">— Brilla con esencia —</p>
+      <h1 class="hero-title">
+        <span class="line">Joyas</span>
+        <span class="line">con alma</span>
+      </h1>
+      <p class="hero-desc">
+        Diseños exclusivos para la mujer que busca expresar su luz a través de piezas únicas con diamantes y piedras preciosas.
+      </p>
+      <div class="hero-actions">
+        <a href="#productos" class="btn btn-primary">Ver Colección</a>
+        <a href="#galeria" class="btn btn-outline">Inspírate</a>
+      </div>
+    </div>
+    <div class="scroll-down">
+      <span>Descubre</span>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <section id="productos">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-tag">Selección HASS</p>
+        <h2 class="section-title">Nuestras Joyas</h2>
+        <p class="section-desc mx-auto">
+          Cada pieza está diseñada para realzar la belleza femenina con diamantes, oro y gemas de la más alta calidad.
+        </p>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <img class="modal-img" id="modalImg" src="" alt="" />
+      <div class="modal-body">
+        <h2 id="modalTitle"></h2>
+        <p class="price" id="modalPrice"></p>
+        <p id="modalDesc"></p>
+        <button class="modal-close" id="modalClose">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="galeria">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-tag">Inspiración</p>
+        <h2 class="section-title">Galería HASS</h2>
+        <p class="section-desc mx-auto">
+          Momentos que capturan la esencia de nuestras joyas y la mujer que las lleva.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSelasgBMCJc6ELDvwDq0VxN0iHSCzoSbTjeSuNO2a6zg&s=10" alt="Mujer con joyas" loading="lazy" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBmYBg1TAFmHM0aYDfJqKVC4lltp3iU6OtO4MmYzpHZA&s=10" alt="Collar" loading="lazy" class="tall" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT5OGiu_aLP8oRwtFtGBMxXcnKomZ77_4cvFpyv4Rjfw&s=10" alt="Anillo" loading="lazy" class="wide" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlkye04O6YFro3kkfeokSFWItqK4NpkVkJvPTkODOooQ&s=10" alt="Joyería" loading="lazy" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf9z_JMDxZ-rCsOtickxKGzTW0DGcnz8m6qu3RBipCZQ&s=10" alt="Mujer elegante" loading="lazy" class="tall" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDZEjHQGPqMGBKPGjJTbax1tEVs7Mh4B6zX3eH2C6f5g&s=10" alt="Pulsera" loading="lazy" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGi0hOnhImPnKDy3f9VjRz524xD0xxoRvcAX97fnu2xqAFhUzX1NkpJMQ&s=10" alt="Pendientes" loading="lazy" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0CNxGLOve9A5IMw1XGRHiAEsVAw-P2HQw5AWEW0ODEg&s=10" alt="Collar elegante" loading="lazy" class="wide" />
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <div class="container">
+      <div class="featured-grid">
+        <div class="featured-img-wrap">
+          <img class="featured-img" src="https://www.urgente.bo/sites/default/files/ARETES%20CHINOS_0.jpg" alt="Colección HASS" loading="lazy" />
+          <div class="featured-badge">Edición Limitada</div>
+        </div>
+        <div>
+          <p class="section-tag">Exclusivo HASS</p>
+          <h2 class="section-title">Colección Privée</h2>
+          <p class="section-desc">
+            Una línea exclusiva de joyas con diamantes de talla impecable engastados en oro rosa y platino. Solo 30 piezas en el mundo.
+          </p>
+          <ul class="featured-list">
+            <li>Diamantes certificados GIA (D-E color, IF-VVS1)</li>
+            <li>Engaste artesanal realizado en París</li>
+            <li>Certificado de autenticidad y procedencia</li>
+            <li>Garantía vitalicia y servicio de limpieza gratuita</li>
+          </ul>
+          <a href="#contacto" class="btn btn-primary">Solicitar Información</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-tag">Testimonios</p>
+        <h2 class="section-title">Ellas confían en HASS</h2>
+        <p class="section-desc mx-auto">
+          La satisfacción de nuestras clientas es el mayor reflejo de nuestra dedicación.
+        </p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"El anillo de compromiso que compré en HASS superó todos mis sueños. La calidad del diamante es simplemente perfecta."</blockquote>
+          <p class="testimonial-author">Camila G. <span>— Cliente Verificada</span></p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"Los pendientes de diamante son una obra de arte. Los uso a diario y siempre recibo cumplidos. HASS es sinónimo de elegancia."</blockquote>
+          <p class="testimonial-author">Valentina P. <span>— Cliente Verificada</span></p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"El collar que compré para mi boda es exactamente lo que imaginaba: elegante, delicado y deslumbrante. Gracias HASS."</blockquote>
+          <p class="testimonial-author">Sofía M. <span>— Cliente Verificada</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <p class="section-tag">Mantente al día</p>
+      <h2 class="section-title">Newsletter HASS</h2>
+      <p class="section-desc mx-auto">
+        Suscríbete y recibe primero nuestras colecciones exclusivas, eventos y ofertas especiales.
+      </p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="newsletterEmail" placeholder="Tu correo electrónico" required />
+        <button type="submit">Suscribirse</button>
+      </form>
+      <p class="newsletter-msg" id="newsletterMsg"></p>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="contact-content">
+        <p class="section-tag">Contacto</p>
+        <h2 class="section-title">Hablemos</h2>
+        <p class="section-desc mx-auto">
+          Escríbenos para una asesoría personalizada. Te ayudaremos a encontrar la joya perfecta para ti o para regalar.
+        </p>
+        <a href="mailto:hola@hassjoyas.com" class="btn btn-primary">hola@hassjoyas.com</a>
+        <div class="contact-details">
+          <div class="contact-item">
+            <p class="contact-item-label">WhatsApp</p>
+            <p class="contact-item-value">966 360 578</p>
+          </div>
+          <div class="contact-item">
+            <p class="contact-item-label">Ubicación</p>
+            <p class="contact-item-value">Huancayo</p>
+          </div>
+          <div class="contact-item">
+            <p class="contact-item-label">Horario</p>
+            <p class="contact-item-value">Lun–Sáb 10:00–19:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 HASS Joyería </p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const products = [
+      {
+        title: 'Anillo Eternidad',
+        price: '$2,500 ',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqYlyOiIvWP-lYDjUhzJ7u8na6WU7MragTs0CzpzGy0Q&s=10',
+        desc: 'Anillo de compromiso con diamante central talla brillante y banda de oro rosa 18k. Certificado GIA.'
+      },
+      {
+        title: 'Collar Aurora',
+        price: '$4,200 ',
+        img: 'https://www.luxtor.pe/recursos/tienda/img/productos/Pulsera-Aurora-Joyer%C3%ADa-Yanbal.webp',
+        desc: 'Collar con diamantes pavé en oro blanco 18k. Cadena ajustable y cierre de seguridad.'
+      },
+      {
+        title: 'Pendientes Luna',
+        price: '$1,800 ',
+        img: 'https://http2.mlstatic.com/D_NQ_NP_868554-MPE111486628270_052026-O-pendientes-de-luna-y-estrella-aretes-plata-con-zafiro.webp',
+        desc: 'Pendientes colgantes con diamantes talla pera en oro amarillo 18k. Cierre de presión.'
+      },
+      {
+        title: 'Pulsera Destello',
+        price: '$3,200 ',
+        img: 'https://cdn-media.glamira.com/media/product/newgeneration/view/1/sku/buras/diamond/diamond-Brillant_AAA/alloycolour/red.jpg',
+        desc: 'Pulsera tennis con diamantes graduales en platino. Cierre mariposa de seguridad.'
+      },
+      {
+        title: 'Tiara Reina',
+        price: '$6,500 ',
+        img: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=2069&auto=format&fit=crop',
+        desc: 'Tiara de diamantes con diseño floral en oro blanco. Ideal para bodas y galas.'
+      },
+      {
+        title: 'Diamante Bruto',
+        price: '$1,000 ',
+        img: 'https://i.etsystatic.com/5711157/r/il/36cd2e/1529980022/il_570xN.1529980022_nil0.jpg',
+        desc: 'Diamante certificado GIA para inversión o engaste personalizado. Incluye certificado digital.'
+      }
+    ];
+
+    const grid = document.getElementById('productGrid');
+
+    products.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img class="product-card-img" src="${p.img}" alt="${p.title}" loading="lazy" />
+        <div class="product-card-body">
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+          <div class="product-card-footer">
+            <span class="product-price">${p.price}</span>
+            <span class="product-link">Ver détalles →</span>
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', () => openModal(i));
+      grid.appendChild(card);
+    });
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(i) {
+      const p = products[i];
+      modalImg.src = p.img;
+      modalImg.alt = p.title;
+      modalTitle.textContent = p.title;
+      modalPrice.textContent = p.price;
+      modalDesc.textContent = p.desc;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterEmail = document.getElementById('newsletterEmail');
+    const newsletterMsg = document.getElementById('newsletterMsg');
+
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!newsletterEmail.value.trim()) return;
+      newsletterMsg.textContent = '¡Gracias por suscribirte, bienvenida a HASS!';
+      newsletterEmail.value = '';
+      showToast('¡Suscripción exitosa!');
+    });
+
+    const toast = document.getElementById('toast');
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.product-card, .testimonial-card, .featured-grid, .gallery-grid').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
